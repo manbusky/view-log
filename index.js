@@ -18,6 +18,8 @@ http.listen(3000, function() {
 
 io.on('connection', function(socket) {
 
+	console.log('connected');
+
 	socket.emit("filename", filename);
 
 	var tail = spawn("tail", ["-f", filename]);
@@ -32,7 +34,7 @@ io.on('connection', function(socket) {
 
 	socket.on('disconnect', function() {
 
-		console.log('user disconnected');
+		console.log('disconnected');
 	});
 });
 
