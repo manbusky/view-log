@@ -1,0 +1,20 @@
+{
+  "name": "view-log-online",
+  "version": "1.0.0",
+  "description": "view log online",
+  "main": "index.js",
+  "keywords": [
+    "view",
+    "log"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:manbusky/view-log.git"
+  },
+  "author": "Wang Jiacheng",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.10.2",
+    "socket.io": "^1.4.8"
+  }
+}

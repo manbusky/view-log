@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>view log instantly online</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+
+  <script type="text/javascript">
+
+    var lines = 0;
+
+    $(document).ready(function() {
+
+        var socket = io();
+        socket.connect();
+
+        socket.on('connect', function() {
+            console.log('Connected to:', socket.host);
+        });
+
+        socket.on('filename', function(filename) {
+          $('#file').html( filename );
+        });
+
+        socket.on('content', function(content) {
+          
+          console.log('Received content:', content);
+
+          $('#log').html( $('#log').html() + content );
+
+          lines++
+
+          $('#log').scrollTop(lines * 100);
+
+        });
+
+    });
+  </script>
+
+  <style>
+    body { 
+      color: #1a2c37;
+      padding: 1em; 
+    }
+    #info { 
+      font-size: 120%;
+      font-weight: bold;
+    }
+    #log {  
+      border: 1px solid #ccc;
+      height: 500px;
+      padding: 0.5em;
+      overflow: hidden;
+      position: relative;
+      overflow-x: scroll; 
+      overflow-y: scroll; 
+    }
+  </style>
+
+</head>
+<body>
+  <pre id="file"></pre>
+  <pre id="log"></pre>
+</body>
+</html>
